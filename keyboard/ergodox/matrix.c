@@ -142,6 +142,52 @@ uint8_t matrix_scan(void)
     }
 #endif
 
+#ifdef KEYMAP_GELATIN
+    if (led_counter == 0) {
+        led_counter = led_counter_max;
+
+        if (led_side) {
+            led_side = 0;
+
+            uint32_t led;
+            if (led_left & (1<<1)) { led = 1; } else { led = 0; }
+            // led D7 - output; high/low output
+            DDRD  |=  (1<<7);
+            PORTD &= ~(1<<7);
+            PORTD |=  (led<<7);
+
+            DDRB  |=  (1<<6 | 1<<5 | 1<<4);
+            PORTB &= ~(1<<6 | 1<<5 | 1<<4);
+            PORTB |=  (led_left<<4);
+
+            // led C7 - output; low output
+            DDRC  |=  (1<<7);
+            PORTC &= ~(1<<7);
+        } else {
+            led_side = 1;
+
+            uint32_t led;
+            if (led_right & (1<<1)) { led = 1; } else { led = 0; }
+            // led D7 - output; low/high output
+            DDRD  |=  (1<<7);
+            PORTD &= ~(1<<7);
+            PORTD |=  ((1^led)<<7);
+
+            DDRB  |=  (1<<6 | 1<<5 | 1<<4);
+            PORTB &= ~(1<<6 | 1<<5 | 1<<4);
+            PORTB |=  ((1<<6 | 1<<5 | 1<<4)^(led_right<<4));
+
+            // led C7 - output; high output
+            DDRC  |=  (1<<7);
+            PORTC |=  (1<<7);
+        }
+
+        _delay_ms(5);
+    } else {
+        led_counter--;
+    }
+#endif
+
 #ifdef KEYMAP_CUB1
     // on many registers - ok
     if (led_counter == 0) {
