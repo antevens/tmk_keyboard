@@ -33,9 +33,12 @@ Most used files are located at
 #define CPU_16MHz       0x00
 
 // I2C aliases and register addresses (see "mcp23018.md")
-#define I2C_ADDR        0b0100000
-#define I2C_ADDR_WRITE  ( (I2C_ADDR<<1) | I2C_WRITE )
-#define I2C_ADDR_READ   ( (I2C_ADDR<<1) | I2C_READ  )
+#define I2C_MCP23018_ADDR        0b0100000
+#define I2C_MCP23018_WRITE  ( (I2C_MCP23018_ADDR<<1) | I2C_WRITE )
+#define I2C_MCP23018_READ   ( (I2C_MCP23018_ADDR<<1) | I2C_READ )
+#define I2C_LM3549_ADDR        0b0110110
+#define I2C_LM3549_WRITE  ( (I2C_LM3549_ADDR<<1) | I2C_WRITE )
+#define I2C_LM3549_READ   ( (I2C_LM3549_ADDR<<1) | I2C_READ )
 #define IODIRA          0x00            // i/o direction register
 #define IODIRB          0x01
 #define GPPUA           0x0C            // GPIO pull-up resistor register

@@ -39,6 +39,7 @@ Most used files are located at
 
 bool i2c_initialized = 0;
 uint8_t mcp23018_status = 0x20;
+uint8_t _status = 0x20;
 
 bool ergodox_left_led_1 = 0;  // left top
 bool ergodox_left_led_2 = 0;  // left middle
@@ -85,11 +86,12 @@ uint8_t init_mcp23018(void) {
         _delay_ms(1000);
     }
 
+
     // set pin direction
     // - unused  : input  : 1
     // - input   : input  : 1
     // - driving : output : 0
-    mcp23018_status = i2c_start(I2C_ADDR_WRITE);    if (mcp23018_status) goto out;
+    mcp23018_status = i2c_start(I2C_MCP23018_WRITE);    if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(IODIRA);            if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(0b00000000);        if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(0b00111111);        if (mcp23018_status) goto out;
@@ -99,7 +101,7 @@ uint8_t init_mcp23018(void) {
     // - unused  : on  : 1
     // - input   : on  : 1
     // - driving : off : 0
-    mcp23018_status = i2c_start(I2C_ADDR_WRITE);    if (mcp23018_status) goto out;
+    mcp23018_status = i2c_start(I2C_MCP23018_WRITE);    if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(GPPUA);             if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(0b00000000);        if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(0b00111111);        if (mcp23018_status) goto out;
@@ -124,7 +126,7 @@ uint8_t ergodox_left_leds_update(void) {
     // - unused  : hi-Z : 1
     // - input   : hi-Z : 1
     // - driving : hi-Z : 1
-    mcp23018_status = i2c_start(I2C_ADDR_WRITE);    if (mcp23018_status) goto out;
+    mcp23018_status = i2c_start(I2C_MCP23018_WRITE);    if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(OLATA);             if (mcp23018_status) goto out;
     mcp23018_status = i2c_write(0b11111111
             & ~(ergodox_left_led_3<<LEFT_LED_3_SHIFT)

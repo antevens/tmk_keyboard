@@ -115,6 +115,35 @@ uint8_t matrix_scan(void)
         pdec(matrix_scan_count);
         print("\n");
 
+//        start
+//        slave_address
+//        write
+//            ack
+//        register
+//            ack
+//        slave_address
+//        restart
+//            ack
+//        stop
+//        i2c_init();
+        i2c_start(I2C_LM3549_WRITE);
+        //i2c_start_wait(0b01101100);
+        i2c_write(0x17);
+        i2c_readAck();
+        //i2c_stop();
+        //i2c_start(I2C_LM3549_READ);
+        i2c_rep_start(I2C_LM3549_READ);
+        uint8_t data = 0;
+        print("Waiting For I2C Data");
+        data = i2c_readNak();
+        i2c_stop();
+        //data = ~data;
+        print("LED Driver Errors: ");
+        pbin(data);
+        print( " -> " );
+        phex(data);
+        print("\n");
+
         matrix_timer = timer_now;
         matrix_scan_count = 0;
     }
@@ -383,9 +412,9 @@ static matrix_row_t read_cols(uint8_t row)
             return 0;
         } else {
             uint8_t data = 0;
-            mcp23018_status = i2c_start(I2C_ADDR_WRITE);    if (mcp23018_status) goto out;
+            mcp23018_status = i2c_start(I2C_MCP23018_WRITE);    if (mcp23018_status) goto out;
             mcp23018_status = i2c_write(GPIOB);             if (mcp23018_status) goto out;
-            mcp23018_status = i2c_start(I2C_ADDR_READ);     if (mcp23018_status) goto out;
+            mcp23018_status = i2c_start(I2C_MCP23018_READ);     if (mcp23018_status) goto out;
             data = i2c_readNak();
             data = ~data;
         out:
@@ -422,7 +451,7 @@ static void unselect_rows(void)
         // do nothing
     } else {
         // set all rows hi-Z : 1
-        mcp23018_status = i2c_start(I2C_ADDR_WRITE);    if (mcp23018_status) goto out;
+        mcp23018_status = i2c_start(I2C_MCP23018_WRITE);    if (mcp23018_status) goto out;
         mcp23018_status = i2c_write(GPIOA);             if (mcp23018_status) goto out;
         mcp23018_status = i2c_write( 0xFF
                               & ~(ergodox_left_led_3<<LEFT_LED_3_SHIFT)
@@ -450,7 +479,7 @@ static void select_row(uint8_t row)
         } else {
             // set active row low  : 0
             // set other rows hi-Z : 1
-            mcp23018_status = i2c_start(I2C_ADDR_WRITE);        if (mcp23018_status) goto out;
+            mcp23018_status = i2c_start(I2C_MCP23018_WRITE);        if (mcp23018_status) goto out;
             mcp23018_status = i2c_write(GPIOA);                 if (mcp23018_status) goto out;
             mcp23018_status = i2c_write( 0xFF & ~(1<<row)
                                   & ~(ergodox_left_led_3<<LEFT_LED_3_SHIFT)

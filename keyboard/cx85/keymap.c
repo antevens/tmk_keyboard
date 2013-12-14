@@ -70,28 +70,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Layer 0
-    KEYMAP(ESC,  P7, P8, P9,  PMNS, \
-           TAB,  P4,  P5,  P6, PENT, \
-           BSPC, P1,  P2,  P3, \
-           FN1, P0,  PDOT
+    KEYMAP(ESC,  P7, P8,  P9,  PMNS, \
+           TAB,  P4, P5,  P6,  PENT, \
+           BSPC, P1, P2,  P3,        \
+           FN1,  P0, PDOT
     ),
     // Layer 1
-    KEYMAP(FN0,  P7, P8, P9,  PMNS, \
-           FN2,  P4,  P5,  P6, PENT, \
-           FN3, P1,  P2,  P3, \
-           FN1, P0,  PDOT
+    KEYMAP(TRNS, FN7,  FN8,  FN9,  PMNS, \
+           TRNS, FN4,  FN5,  FN6,  PENT, \
+           TRNS, FN1,  FN2,  FN3,        \
+           FN1,  FN0,  PDOT
     ),
     // Layer2
-    KEYMAP(FN4,  P7, UP, P9,  VOLD, \
-           FN2,  LEFT,  P5,  RIGHT, VOLU, \
-           FN3, P1,  DOWN,  P3, \
-           ESC, P0,  PDOT
+    KEYMAP(FN4,  P7,    UP,   P9,    VOLD, \
+           FN2,  LEFT,  P5,   RIGHT, VOLU, \
+           FN3,  P1,    DOWN, P3,          \
+           ESC,  P0,    PDOT
     ),
     // Layer 3 - FreeCiv
-    KEYMAP(FN4,  P7, P8, P9,  PMNS, \
-           FN2,  P4,  P5,  P6, FN6, \
-           FN3, P1,  P2,  P3, \
-           ESC, P0,  PDOT
+    KEYMAP(FN4,  P7,  P8,  P9,  PMNS, \
+           FN2,  P4,  P5,  P6,  FN6,  \
+           FN3,  P1,  P2,  P3,        \
+           ESC,  P0,  PDOT
     ),
 };
 
@@ -114,8 +114,8 @@ static const uint16_t PROGMEM fn_actions[] = {
     ACTION_LAYER_SET(2, ON_PRESS),                  // FN2 - push Layer2
     ACTION_LAYER_SET(3, ON_PRESS),                  // FN3 - push Layer3
     ACTION_LAYER_SET(0, ON_PRESS),                  // FN4 - push Layer0
-    ACTION_MACRO(PUB_KEY),
-    ACTION_MODS_KEY(MOD_LSFT, KC_ENT)               // Shift + Enter, FreeCiv
+    ACTION_MODS_KEY(MOD_LSFT, KC_ENT),              // FN5 - Shift + Enter, FreeCiv
+    ACTION_MACRO(PUB_KEY)                           // FN6 - Macro, type SSH pub key
 };
 
 /*
