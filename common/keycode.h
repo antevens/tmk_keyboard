@@ -130,7 +130,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KC_ACL0 KC_MS_ACCEL0
 #define KC_ACL1 KC_MS_ACCEL1
 #define KC_ACL2 KC_MS_ACCEL2
-/* Sytem Control */
+/* System Control */
 #define KC_PWR  KC_SYSTEM_POWER
 #define KC_SLEP KC_SYSTEM_SLEEP
 #define KC_WAKE KC_SYSTEM_WAKE
