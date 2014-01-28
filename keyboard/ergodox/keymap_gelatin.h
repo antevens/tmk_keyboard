@@ -2,13 +2,13 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * Keymap: Layer 0 with Gelatin keyboard layout
      * Note that this layout requires a custom OS keyboard map to work correctly.
-	 *
+     *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |  +L1   | 1 !¡ |  2 @ | 3 #  | 4 $ §| 5 % ˝|˘ ̑ ˚ |           |˘ ̑ · | 6 ^ ̏| 7 &  | 8 *  | 9 +  | 0 =  |   L0   |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |  Tab   |   Q  |   W  |   F  |   P  |   G  | ˆ ˇ  |           |  / \ |   J  |   L  |   U  | Y ¥  |' " ~ |  Esc   |
-     * |--------+------+------+------+------+------|  *   |           |   /	 |------+------+------+------+------+--------|
-     * | ´` ¨   |   N  |  R ® | S ẞ	 |  T Þ | D Ð  |------|           |------|   H  |  A Æ | E €  |I ı İ |  O Œ | - _ ¯  |
+     * |--------+------+------+------+------+------|  *   |           |   /  |------+------+------+------+------+--------|
+     * | ´` ¨   |   N  |  R ® | S ẞ  |  T Þ | D Ð  |------|           |------|   H  |  A Æ | E €  |I ı İ |  O Œ | - _ ¯  |
      * |--------+------+------+------+------+------| RAlt |           | RAlt |------+------+------+------+------+--------|
      * | LShift |   Z  |   X  |C © ¢ |   V  |   B  |      |           |      |   K  |  M ™ |  ,;¸ |  .:˛ | |?¿¦ | RShift |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -21,14 +21,35 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                 | BkSp | Del  |------|       |------| Enter| Space|
      *                                 |      |      | PgDn |       | End  |      |      |
      *                                 `--------------------'       `--------------------'
-     * 
-	 * Keymap: Layer 0 USB Key Usage IDs (HEX)
-	 *
+     */
+    KEYMAP(  // layer 0 : default
+        // left hand
+        FN1,            1,      2,      3,      4,        5,   NONUS_HASH,
+        TAB,            Q,      W,      F,      P,        G,   GRAVE,
+        NONUS_BSLASH,   N,      R,      S,      T,        D,
+        LSFT,           Z,      X,      C,      V,        B,   RALT,
+        LCTL,           LGUI,   LALT,   SCOLON, LBRACKET,
+                                                FN1,     FN1,
+                                                          PGUP,
+                                        BSPC,   DEL,      PGDN,
+        // right hand
+        INT1,   6,      7,         8,      9,      0,      FN0,
+        SLASH,  J,      L,         U,      Y,      QUOT,   ESC,
+                H,      A,         E,      I,      O,      MINUS,
+        RALT,   K,      M,         COMM,   DOT,    BSLASH, RSFT,
+                        RBRACKET,  EQUAL,  LALT,   RGUI,   RCTL,
+            FN1,       FN1,
+            HOME,
+            END,        ENT,       SPC
+    ),     
+    /* 
+     * Keymap: Layer 0 USB Key Usage IDs (HEX)
+     *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |  +L1   | 0x1E | 0x1F | 0x20 | 0x21 | 0x22 | 0x32 |           | 0x87 | 0x23 | 0x24 | 0x25 | 0x26 | 0x27 |   L0   |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |  0x2B  | 0x14 | 0x1A | 0x09 | 0x13 | 0x0A | 0x35 |           | 0x38 | 0x0D | 0x0F | 0x18 | 0x1C | 0x34 |  0x29  |
-     * |--------+------+------+------+------+------|      |           |   	 |------+------+------+------+------+--------|
+     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
      * |  0x64  | 0x11 | 0x15 | 0x16 | 0x17 | 0x07 |------|           |------| 0x0B | 0x04 | 0x08 | 0x0C | 0x12 |  0x2D  |
      * |--------+------+------+------+------+------| 0xE6 |           | 0xE6 |------+------+------+------+------+--------|
      * |  0xE1  | 0x1D | 0x1B | 0x06 | 0x19 | 0x05 |      |           |      | 0x0E | 0x10 | 0x36 | 0x37 | 0x31 |  0xE5  |
@@ -42,14 +63,14 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                 | 0x2A | 0x4C |------|       |------| 0x28 | 0x2C |
      *                                 |      |      | 0x4E |       | 0x4D |      |      |
      *                                 `--------------------'       `--------------------'
-	 *
+     *
      * Keymap: Layer 1
-	 *
+     *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
-     * |  +L2   |  F1  |  F2  |  F3	 |  F4  |  F5  |˘ ̑ ˚ |           |˘ ̑ · | PrtSc| NumLk|   /  |   *  |   -  |   L0   |
+     * |  +L2   |  F1  |  F2  |  F3  |  F4  |  F5  |˘ ̑ ˚ |           |˘ ̑ · | PrtSc| NumLk|   /  |   *  |   -  |   L0   |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |  Tab   |      | PgUp |  Up  | Vol+ |      | ˆ ˇ  |           |  / \ | ScrLk|   7  |   8  |   9  |  +   |        |
-     * |--------+------+------+------+------+------|  *   |           |   /	 |------+------+------+------+------+--------|
+     * |--------+------+------+------+------+------|  *   |           |   /  |------+------+------+------+------+--------|
      * | ´` ¨   | Home | Left | Down |Right | End  |------|           |------| Pause|   4  |   5  |   6  |  =   |        |
      * |--------+------+------+------+------+------| RAlt |           | RAlt |------+------+------+------+------+--------|
      * | CapsLk |      | PgDn | Mute | Vol- |      |      |           |      |      |   1  |   2  |   3  | Enter| CapsLk |
@@ -64,8 +85,27 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                 |      |      | PgDn |       | End  |      |      |
      *                                 `--------------------'       `--------------------'
      */
-
-    KEYMAP(  // Layer0: default, leftled:none
+    KEYMAP(  // layer 1 : function and symbol keys
+        // left hand
+        TRNS,F1,  F2,  F3,  F4,  F5,  F11,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,
+                                      TRNS,TRNS,
+                                           TRNS,
+                                 TRNS,TRNS,TRNS,
+        // right hand
+             F12, F6,  F7,  F8,  F9,  F10, TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                       TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,
+        TRNS,
+        TRNS,TRNS,TRNS
+    ),
+    KEYMAP(  // Layer3: default, leftled:none
         // left hand
         NO,  NO,  NO,  NO,  NO,  NO,  NO,
         NO,  NO,  NO,  NO,  NO,  NO,  NO,
