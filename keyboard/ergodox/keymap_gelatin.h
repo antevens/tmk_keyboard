@@ -6,9 +6,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |  +L1   | 1 !¡ |  2 @ | 3 #  | 4 $ §| 5 % ˝|˘ ̑ ˚ |           |˘ ̑ · | 6 ^ ̏| 7 &  | 8 *  | 9 +  | 0 =  |   L0   |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-     * |  Tab   |   Q  |   W  |   F  |   P  |   G  | ˆ ˇ  |           | | ?  |   J  |   L  |   U  | Y ¥  |' " ~ |  Esc   |
+     * |  Tab   |   Q  |   W  |   F  |   P  |   G  | ˆ ˇ  |           | | ?  |   J  |   L  |   U  | Y ¥  |' " ´ |  Esc   |
      * |--------+------+------+------+------+------|  *   |           | ¿ ¦  |------+------+------+------+------+--------|
-     * | ´` ¨   |   N  |  R ® | S ẞ  |  T Þ | D Ð  |------|           |------|   H  |  A Æ | E €  |I ı İ |  O Œ | - _ ¯  |
+     * | ´` ¨   |   N  |  R ® | S ẞ  |  T Þ | D Ð  |------|           |------|   H  |  A Æ | E €  |I ı İ |  O Œ | - _ ~  |
      * |--------+------+------+------+------+------| RAlt |           | RAlt |------+------+------+------+------+--------|
      * | LShift |   Z  |   X  |C © ¢ |   V  |   B  |      |           |      |   K  |  M ™ |  ,;¸ |  .:˛ | / \ /| RShift |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -34,9 +34,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         BSPC,   DEL,      PGDN,
         // right hand
         INT1,   6,      7,         8,      9,      0,      FN0,
-        SLASH,  J,      L,         U,      Y,      QUOT,   ESC,
+        BSLASH,  J,      L,         U,      Y,      QUOT,   ESC,
                 H,      A,         E,      I,      O,      MINUS,
-        RALT,   K,      M,         COMM,   DOT,    BSLASH, RSFT,
+        RALT,   K,      M,         COMM,   DOT,    SLASH, RSFT,
                         RBRACKET,  EQUAL,  LALT,   RGUI,   RCTL,
             FN1,       FN1,
             HOME,
@@ -69,8 +69,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |  +L2   |  F1  |  F2  |  F3  |  F4  |  F5  |˘ ̑ ˚ |           |˘ ̑ · | PrtSc| NumLk|   /  |   *  |   -  |   L0   |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-     * |  Tab   |      | PgUp |  Up  | Vol+ |      | ˆ ˇ  |           |  / \ | ScrLk|   7  |   8  |   9  |  +   |        |
-     * |--------+------+------+------+------+------|  *   |           |   /  |------+------+------+------+------+--------|
+     * |  Tab   |      | PgUp |  Up  | Vol+ |      | ˆ ˇ  |           | | ?  | ScrLk|   7  |   8  |   9  |  +   |        |
+     * |--------+------+------+------+------+------|  *   |           | ¿ ¦  |------+------+------+------+------+--------|
      * | ´` ¨   | Home | Left | Down |Right | End  |------|           |------| Pause|   4  |   5  |   6  |  =   |        |
      * |--------+------+------+------+------+------| RAlt |           | RAlt |------+------+------+------+------+--------|
      * | CapsLk |      | PgDn | Mute | Vol- |      |      |           |      |      |   1  |   2  |   3  | Enter| CapsLk |
@@ -168,7 +168,7 @@ void action_function(keyrecord_t *event, uint8_t id, uint8_t opt)
             print("not supported.\n");
             break;
 
-        case LED_L1_KEY: if (event->event.pressed) led_left  ^= (1<<0); break;
+/*       case LED_L1_KEY: if (event->event.pressed) led_left  ^= (1<<0); break;
         case LED_L2_KEY: if (event->event.pressed) led_left  ^= (1<<1); break;
         case LED_L3_KEY: if (event->event.pressed) led_left  ^= (1<<2); break;
         case LED_R1_KEY: if (event->event.pressed) led_right ^= (1<<0); break;
@@ -177,6 +177,7 @@ void action_function(keyrecord_t *event, uint8_t id, uint8_t opt)
         case LED_CZ_KEY: if (event->event.pressed) led_counter_max = 10; break;
         case LED_CP_KEY: if (event->event.pressed) led_counter_max += 3; break;
         case LED_CM_KEY: if (event->event.pressed) led_counter_max -= 3; break;
+*/
     }
 }
 
